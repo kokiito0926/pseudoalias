@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 
+// ホームディレクトリに設定のファイルを保存できるようにする。
+// そのようにすれば、コマンドをより短くすることができると思う。
+// そのような処理を実装するのであれば、os.homedir関数を用いればいいような気がする。
+// >> 2026/01/27 18:33.
+
 // >> $ node ./index.js --config example.js
 // >> $ node ./index.js --config example.js greetings
 // >> $ node ./index.js --config example.js addition 1 2
