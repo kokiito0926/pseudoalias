@@ -1,0 +1,41 @@
+{
+	"name": "@kokiito0926/pseudoalias",
+	"version": "0.0.0",
+	"private": false,
+	"description": "スードーエイリアス（pseudoalias）を用いれば、擬似的なエイリアスを作成することができます。",
+	"keywords": [
+		"cli",
+		"bash",
+		"alias",
+		"shell",
+		"script",
+		"nodejs",
+		"pseudoalias"
+	],
+	"homepage": "https://github.com/kokiito0926/pseudoalias#readme",
+	"publishConfig": {
+		"access": "public"
+	},
+	"bin": {
+		"pseudoalias": "index.js"
+	},
+	"bugs": {
+		"url": "https://github.com/kokiito0926/pseudoalias/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kokiito0926/pseudoalias.git"
+	},
+	"license": "MIT",
+	"author": "Koki Ito <kokiito0926@gmail.com>",
+	"type": "module",
+	"scripts": {
+		"test": "node --test"
+	},
+	"dependencies": {
+		"zx": "^8.8.4"
+	},
+	"engines": {
+		"node": ">=24.0.0"
+	}
+}
