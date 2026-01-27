@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+// いちおう、Bashで入力補完が効くようになった。
+// タブを1回だけ押したときに入力補完が決まるようになった。
+// それから、ファイルのパスの入力補完も効くようになった。
+// >> $ complete -C "pseudoalias --config ./example.js --completion" -o default pseudoalias
+// >> 2026/01/27 21:36.
+
 // いちおう、入力補完のコマンドを書いておいたほうがいい。
 // -oのオプションにdefaultを指定していても、ファイルのパスの入力補完が効かない。
 // >> $ complete -p
@@ -55,19 +61,36 @@ try {
 	// console.log(restArgs);
 	// process.exit(0);
 
-	const prevWord = process.argv[process?.argv?.length - 1];
-	const currentWord = process.argv[process?.argv?.length - 2];
+	// const prevWord = process.argv[process?.argv?.length - 1];
+	// const currentWord = process.argv[process?.argv?.length - 2];
 
 	if (completion) {
 		// fs.writeFileSync("./temp.txt", prevWord, "utf-8");
 		// fs.writeFileSync("./temp.txt", currentWord, "utf-8");
 		// process.exit(0);
 
+		const args2 = process.argv;
+		const prevWord = args2[args2.length - 1];
+		const currentWord = args2[args2.length - 2];
+
 		if (prevWord === "pseudoalias") {
-			const availableFunctions = Object.keys(aliasModule).filter((k) => k !== "default");
-			console.log(availableFunctions.join("\n"));
+			const candidates = Object.keys(aliasModule).filter((k) => k !== "default");
+			// const candidates = ["addition", "division", "greetings", "multiplication", "subtraction"];
+
+			const filtered = candidates.filter((c) => c.startsWith(currentWord));
+
+			if (filtered.length > 0) {
+				console.log(filtered.join("\n"));
+			}
 			process.exit(0);
 		}
+
+		// if (prevWord === "pseudoalias") {
+		// 	const availableFunctions = Object.keys(aliasModule).filter((k) => k !== "default");
+		// 	console.log(availableFunctions.join("\n"));
+		// 	process.exit(0);
+		// }
+
 		process.exit(0);
 	}
 
