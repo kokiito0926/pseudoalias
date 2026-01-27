@@ -4,18 +4,15 @@
 // >> $ node ./index.js --config example.js greetings
 // >> $ node ./index.js --config example.js addition 1 2
 
-import { minimist, argv } from "zx";
+import { minimist, path, argv } from "zx";
 import { pathToFileURL } from "node:url";
-
-// argv._.shift();
 
 const commands = argv._;
 
 const args = minimist(process.argv.slice(2));
 const config = args.config;
-// const config = argv.config;
 // console.log(argv);
-// console.log(commands, config);
+// console.log(args);
 // process.exit(0);
 
 const targetFile = config;
@@ -23,9 +20,13 @@ if (!targetFile) {
 	process.exit(0);
 }
 
-const targetPath = targetFile;
-// const targetPath = path.resolve(targetFile);
+// const targetPath = targetFile;
+const targetPath = path.resolve(targetFile);
+if (!targetPath) {
+	process.exit(0);
+}
 // console.log(targetPath);
+// process.exit(0);
 
 try {
 	const aliasModule = await import(pathToFileURL(targetPath).href);
