@@ -1,6 +1,6 @@
 {
 	"name": "@kokiito0926/pseudoalias",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"private": false,
 	"description": "スードーエイリアス（pseudoalias）を用いれば、擬似的なエイリアスを作成することができます。",
 	"keywords": [
