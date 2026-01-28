@@ -18,6 +18,19 @@ $ pseudoalias --config ./example.js addition 1 2
 $ pseudoalias --config ./example.js subtraction 2 1
 ```
 
+```bash
+$ pseudoalias --config ./example.js --register
+$ pseudoalias --unregister
+
+$ pseudoalias greetings
+$ pseudoalias addition 1 2
+$ pseudoalias subtraction 2 1
+```
+
+```bash
+$ complete -C "pseudoalias --config ./example.js --completion" -o default pseudoalias
+```
+
 ## ライセンス
 
 [MIT](LICENSE)
