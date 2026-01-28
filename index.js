@@ -22,14 +22,15 @@
 // そのような処理を実装するのであれば、os.homedir関数を用いればいいような気がする。
 // >> 2026/01/27 18:33.
 
-// >> $ node ./index.js --config example.js
-// >> $ node ./index.js --config example.js greetings
-// >> $ node ./index.js --config example.js addition 1 2
+// >> $ ./index.js --config example.js
+// >> $ ./index.js --config example.js greetings
+// >> $ ./index.js --config example.js addition 1 2
 
 import { minimist, fs, path, argv } from "zx";
 import { pathToFileURL } from "node:url";
 
 const commands = argv._;
+// console.log(commands);
 
 const args = minimist(process.argv.slice(2));
 const config = args.config;
@@ -38,15 +39,11 @@ const completion = args.completion;
 // console.log(args);
 // process.exit(0);
 
-// console.log("aaaa\nbbbb\ncccc");
-// process.exit(0);
-
 const targetFile = config;
 if (!targetFile) {
 	process.exit(0);
 }
 
-// const targetPath = targetFile;
 const targetPath = path.resolve(targetFile);
 if (!targetPath) {
 	process.exit(0);
@@ -61,36 +58,19 @@ try {
 	// console.log(restArgs);
 	// process.exit(0);
 
-	// const prevWord = process.argv[process?.argv?.length - 1];
-	// const currentWord = process.argv[process?.argv?.length - 2];
-
 	if (completion) {
-		// fs.writeFileSync("./temp.txt", prevWord, "utf-8");
-		// fs.writeFileSync("./temp.txt", currentWord, "utf-8");
-		// process.exit(0);
-
 		const args2 = process.argv;
 		const prevWord = args2[args2.length - 1];
 		const currentWord = args2[args2.length - 2];
 
 		if (prevWord === "pseudoalias") {
 			const candidates = Object.keys(aliasModule).filter((k) => k !== "default");
-			// const candidates = ["addition", "division", "greetings", "multiplication", "subtraction"];
-
 			const filtered = candidates.filter((c) => c.startsWith(currentWord));
-
 			if (filtered.length > 0) {
 				console.log(filtered.join("\n"));
 			}
 			process.exit(0);
 		}
-
-		// if (prevWord === "pseudoalias") {
-		// 	const availableFunctions = Object.keys(aliasModule).filter((k) => k !== "default");
-		// 	console.log(availableFunctions.join("\n"));
-		// 	process.exit(0);
-		// }
-
 		process.exit(0);
 	}
 
