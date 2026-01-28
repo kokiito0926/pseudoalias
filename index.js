@@ -26,6 +26,11 @@
 // >> $ ./index.js --config example.js greetings
 // >> $ ./index.js --config example.js addition 1 2
 
+// >> $ ./index.js --config ./example.js --register
+// >> $ ./index.js greetings
+// >> $ ./index.js addition 1 2
+// >> $ ./index.js --unregister
+
 import os from "node:os";
 import { minimist, fs, path, argv } from "zx";
 import { pathToFileURL } from "node:url";
@@ -56,6 +61,16 @@ if (args.register) {
 		console.log(`Stored in: ${CONFIG_FILE}`);
 	} else {
 		console.error("Error: --config is required with --register");
+	}
+	process.exit(0);
+}
+
+if (args.unregister) {
+	if (await fs.exists(CONFIG_DIR)) {
+		await fs.remove(CONFIG_DIR);
+		console.log("Success: Unregistered and removed configuration.");
+	} else {
+		console.log("Notice: No configuration found to unregister.");
 	}
 	process.exit(0);
 }
