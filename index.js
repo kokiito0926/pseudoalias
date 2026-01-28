@@ -26,8 +26,12 @@
 // >> $ ./index.js --config example.js greetings
 // >> $ ./index.js --config example.js addition 1 2
 
+import os from "node:os";
 import { minimist, fs, path, argv } from "zx";
 import { pathToFileURL } from "node:url";
+
+const CONFIG_DIR = path.join(os.homedir(), ".pseudoalias");
+const CONFIG_FILE = path.join(CONFIG_DIR, "config.js");
 
 const commands = argv._;
 // console.log(commands);
@@ -39,10 +43,34 @@ const completion = args.completion;
 // console.log(args);
 // process.exit(0);
 
-const targetFile = config;
-if (!targetFile) {
+if (args.register) {
+	if (args.config) {
+		const absConfigPath = path.resolve(args.config);
+		const configData = fs.readFileSync(absConfigPath, "utf-8");
+
+		await fs.ensureDir(CONFIG_DIR);
+
+		await fs.writeFile(CONFIG_FILE, configData, "utf-8");
+
+		console.log(`Success: Registered config path to ${absConfigPath}`);
+		console.log(`Stored in: ${CONFIG_FILE}`);
+	} else {
+		console.error("Error: --config is required with --register");
+	}
 	process.exit(0);
 }
+
+let targetFile = config;
+
+if (!targetFile) {
+	if (fs.existsSync(CONFIG_FILE)) {
+		targetFile = CONFIG_FILE;
+	} else {
+		process.exit(1);
+	}
+}
+// console.log(targetFile);
+// process.exit(0);
 
 const targetPath = path.resolve(targetFile);
 if (!targetPath) {
