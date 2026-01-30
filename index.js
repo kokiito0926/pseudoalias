@@ -31,8 +31,7 @@
 // >> $ ./index.js addition 1 2
 // >> $ ./index.js --unregister
 
-import os from "node:os";
-import { minimist, fs, path, argv } from "zx";
+import { os, minimist, fs, path, argv } from "zx";
 import { pathToFileURL } from "node:url";
 
 const CONFIG_DIR = path.join(os.homedir(), ".pseudoalias");
