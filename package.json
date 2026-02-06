@@ -1,6 +1,6 @@
 {
 	"name": "@kokiito0926/pseudoalias",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"private": false,
 	"description": "擬似的なエイリアスを作成することができるコマンドラインのツールです。",
 	"keywords": [
