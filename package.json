@@ -2,7 +2,7 @@
 	"name": "@kokiito0926/pseudoalias",
 	"version": "0.0.5",
 	"private": false,
-	"description": "スードーエイリアス（pseudoalias）を用いれば、擬似的なエイリアスを作成することができます。",
+	"description": "擬似的なエイリアスを作成することができるコマンドラインのツールです。",
 	"keywords": [
 		"cli",
 		"bash",
