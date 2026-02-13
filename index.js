@@ -42,10 +42,13 @@ const commands = argv._;
 
 const args = minimist(process.argv.slice(2));
 const config = args.config;
-const completion = args.completion;
 // console.log(argv);
 // console.log(args);
 // process.exit(0);
+
+/*
+const completion = args.completion;
+*/
 
 if (args.register) {
 	if (args.config) {
@@ -100,6 +103,7 @@ try {
 	// console.log(restArgs);
 	// process.exit(0);
 
+	/*
 	if (completion) {
 		const args2 = process.argv;
 		const prevWord = args2[args2.length - 1];
@@ -115,6 +119,7 @@ try {
 		}
 		process.exit(0);
 	}
+	*/
 
 	if (!subCommand) {
 		const availableFunctions = Object.keys(aliasModule).filter((k) => k !== "default");
