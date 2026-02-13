@@ -31,7 +31,7 @@
 // >> $ ./index.js addition 1 2
 // >> $ ./index.js --unregister
 
-import { os, minimist, fs, path, argv } from "zx";
+import { os, fs, path, argv } from "zx";
 import { pathToFileURL } from "node:url";
 
 const CONFIG_DIR = path.join(os.homedir(), ".pseudoalias");
@@ -40,19 +40,17 @@ const CONFIG_FILE = path.join(CONFIG_DIR, "config.js");
 const commands = argv._;
 // console.log(commands);
 
-const args = minimist(process.argv.slice(2));
-const config = args.config;
+const config = argv.config;
 // console.log(argv);
-// console.log(args);
 // process.exit(0);
 
 /*
-const completion = args.completion;
+const completion = argv.completion;
 */
 
-if (args.register) {
-	if (args.config) {
-		const absConfigPath = path.resolve(args.config);
+if (argv.register) {
+	if (argv.config) {
+		const absConfigPath = path.resolve(argv.config);
 		const configData = fs.readFileSync(absConfigPath, "utf-8");
 
 		await fs.ensureDir(CONFIG_DIR);
@@ -67,7 +65,7 @@ if (args.register) {
 	process.exit(0);
 }
 
-if (args.unregister) {
+if (argv.unregister) {
 	if (await fs.exists(CONFIG_DIR)) {
 		await fs.remove(CONFIG_DIR);
 		console.log("Success: Unregistered and removed configuration.");
