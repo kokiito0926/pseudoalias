@@ -67,12 +67,6 @@ $ pseudoalias subtraction 2 1
 $ pseudoalias --unregister
 ```
 
-下記のコマンドを.bashrcなどに追記すると、入力補完が効くようになります。
-
-```bash
-$ complete -C "pseudoalias --completion" -o default pseudoalias
-```
-
 ## ライセンス
 
 [MIT](LICENSE)
